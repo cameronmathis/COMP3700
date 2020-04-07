@@ -19,8 +19,8 @@ public class Main extends Application {
     private AnchorPane openingPane;
     private Scene openingScene;
     private Popup PopUp;
-    private Account accounts[] = new Account[100];
-    private int accountArrayLength = 0;
+    private Account[] accounts = new Account[100];
+    private int accountArrayLength = 5; // Initialize to 5 for the 5 demo accounts created
 
     // GUI Interface
     @Override
@@ -40,6 +40,32 @@ public class Main extends Application {
         primaryStage.show(); //shows the primaryStage
         newOrReturningUserPopUp(); // ask user if they are a new or returning user
 
+        /** Create 5 demo accounts */
+        // Demo operator account
+        accounts[0] = AccountFactory.buildAccount(AccountType.OPERATOR);
+        accounts[0].setEmail("operator@email.com");
+        accounts[0].setUsername("operator");
+        accounts[0].setPassword("password");
+        // Demo league owner account
+        accounts[1] = AccountFactory.buildAccount(AccountType.LEAGUEOWNER);
+        accounts[1].setEmail("leagueOwner@email.com");
+        accounts[1].setUsername("leagueOwner");
+        accounts[1].setPassword("password");
+        // Demo league owner account
+        accounts[2] = AccountFactory.buildAccount(AccountType.PLAYER);
+        accounts[2].setEmail("player@email.com");
+        accounts[2].setUsername("player");
+        accounts[2].setPassword("password");
+        // Demo league owner account
+        accounts[3] = AccountFactory.buildAccount(AccountType.SPECTATOR);
+        accounts[3].setEmail("spectator@email.com");
+        accounts[3].setUsername("spectator");
+        accounts[3].setPassword("password");
+        // Demo league owner account
+        accounts[4] = AccountFactory.buildAccount(AccountType.ADVERTISER);
+        accounts[4].setEmail("advertiser@email.com");
+        accounts[4].setUsername("advertiser");
+        accounts[4].setPassword("password");
     }
 
     /**
@@ -86,6 +112,7 @@ public class Main extends Application {
         Button twoPlayersBtn = (Button) newOrReturningUserPopUpPane.lookup("#login");
         twoPlayersBtn.setOnAction(event -> {
             hidePopUp();
+            accountLoginPopUp();
         });
     }
 
@@ -178,7 +205,6 @@ public class Main extends Application {
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
                 TextField username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
-
                 accounts[accountArrayLength].setUsername(username.getText());
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
@@ -190,6 +216,40 @@ public class Main extends Application {
         });
     }
 
+    /**
+     * ACCOUNT LOGIN POPUP
+     * PopUp to login to account
+     */
+    private void accountLoginPopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane accountLoginPopUpPane = null; //calls popup menu created in 'accountLoginPopUp.fxml' file
+
+        try {
+            accountLoginPopUpPane = FXMLLoader.load(getClass().getResource("accountLoginPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(accountLoginPopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        TextField t1 = ((TextField) accountLoginPopUpPane.lookup("#username"));
+        t1.requestFocus();
+
+        Button enterBtn = (Button) accountLoginPopUpPane.lookup("#enter");
+        TitledPane finalCreateAccountPopUpPane = accountLoginPopUpPane;
+        enterBtn.setOnAction(event -> {
+            if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
+                TextField username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
+            }
+            if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
+                TextField password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
+            }
+            hidePopUp();
+        });
+    }
 
     public static void main(String[] args) {
         Application.launch(args);
