@@ -19,6 +19,8 @@ public class Main extends Application {
     private AnchorPane openingPane;
     private Scene openingScene;
     private Popup PopUp;
+    private Account accounts[] = new Account[100];
+    private int accountArrayLength = 0;
 
     // GUI Interface
     @Override
@@ -111,6 +113,7 @@ public class Main extends Application {
         Button operatorBtn = (Button) accountTypePopUpPane.lookup("#operator");
         operatorBtn.setOnAction(event -> {
             hidePopUp();
+            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.OPERATOR);
             createAccountPopUp();
 
         });
@@ -118,24 +121,28 @@ public class Main extends Application {
         Button leagueOwnerBtn = (Button) accountTypePopUpPane.lookup("#leagueOwner");
         leagueOwnerBtn.setOnAction(event -> {
             hidePopUp();
+            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.LEAGUEOWNER);
             createAccountPopUp();
         });
 
         Button playerBtn = (Button) accountTypePopUpPane.lookup("#player");
         playerBtn.setOnAction(event -> {
             hidePopUp();
+            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.PLAYER);
             createAccountPopUp();
         });
 
         Button spectatorBtn = (Button) accountTypePopUpPane.lookup("#spectator");
         spectatorBtn.setOnAction(event -> {
             hidePopUp();
+            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.SPECTATOR);
             createAccountPopUp();
         });
 
         Button advertiserBtn = (Button) accountTypePopUpPane.lookup("#advertiser");
         advertiserBtn.setOnAction(event -> {
             hidePopUp();
+            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.ADVERTISER);
             createAccountPopUp();
         });
     }
@@ -167,15 +174,19 @@ public class Main extends Application {
         enterBtn.setOnAction(event -> {
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#email")).getText().equals(""))) {
                 TextField email = (TextField) finalCreateAccountPopUpPane.lookup("#email");
-                // user.setEmail(email.getText());
+                accounts[accountArrayLength].setEmail(email.getText());
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
                 TextField username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
+
+                accounts[accountArrayLength].setUsername(username.getText());
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
                 TextField password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
+                accounts[accountArrayLength].setPassword(password.getText());
             }
             hidePopUp();
+            accountArrayLength++;
         });
     }
 
