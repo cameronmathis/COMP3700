@@ -82,7 +82,7 @@ public class Main extends Application {
     }
 
     /**
-     * NEW OR RETURNING ACCOUNT POPUP
+     * NEW OR RETURNING USER POPUP
      * PopUp to ask user if they are new or not
      */
     private void newOrReturningUserPopUp() {
@@ -102,15 +102,15 @@ public class Main extends Application {
 
         openingPane.requestFocus();
 
-        Button onePlayerBtn = (Button) newOrReturningUserPopUpPane.lookup("#createAccount");
-        onePlayerBtn.setOnAction(event -> {
+        Button createAccountBtn = (Button) newOrReturningUserPopUpPane.lookup("#createAccount");
+        createAccountBtn.setOnAction(event -> {
             hidePopUp();
             accountTypePopUp();
 
         });
 
-        Button twoPlayersBtn = (Button) newOrReturningUserPopUpPane.lookup("#login");
-        twoPlayersBtn.setOnAction(event -> {
+        Button loginBtn = (Button) newOrReturningUserPopUpPane.lookup("#login");
+        loginBtn.setOnAction(event -> {
             hidePopUp();
             accountLoginPopUp();
         });
