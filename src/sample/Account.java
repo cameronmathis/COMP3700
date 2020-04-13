@@ -49,27 +49,4 @@ public abstract class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    // Overriding equals() to compare two Account objects
-    @Override
-    public boolean equals(Object o) {
-
-        // If the object is compared with itself then return true
-        if (o == this) {
-            return true;
-        }
-
-        /* Check if o is an instance of Complex or not
-          "null instanceof [type]" also returns false */
-        if (!(o instanceof Account)) {
-            return false;
-        }
-
-        // typecast o to Complex so that we can compare data members
-        Account acct = (Account) o;
-
-        // Compare the data members and return accordingly
-        return type.equals(acct.type)
-                && CharSequence.compare(this.getUsername(), acct.getUsername()) == 0;
-    }
 }

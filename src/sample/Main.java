@@ -1,11 +1,13 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -29,6 +31,9 @@ public class Main extends Application {
 
         this.primaryStage = primaryStage; //sets this primaryStage as 'the' primaryStage
         openingPane = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+        TabPane tabPane = (TabPane) openingPane.lookup("#tabPane");
+        Tab homeTab = tabPane.getTabs().get(0);
+        Tab leagueTab = tabPane.getTabs().get(1);
 
         /**
          * MAIN STAGE CREATED
@@ -67,6 +72,21 @@ public class Main extends Application {
         accounts[4].setEmail("advertiser@email.com");
         accounts[4].setUsername("advertiser");
         accounts[4].setPassword("password");
+
+        /**
+         * TAB LISTENER
+         * Listen for which tab is selected
+         */
+        leagueTab.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event t) {
+                if (leagueTab.isSelected()) {
+                    if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
+                        System.out.println("yes");
+                    }
+                }
+            }
+        });
     }
 
     /**

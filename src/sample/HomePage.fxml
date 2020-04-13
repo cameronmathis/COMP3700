@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="openingPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: transparent; -fx-focus-traversable: false;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <TabPane prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="homeTab" text="Home">
             <content>
