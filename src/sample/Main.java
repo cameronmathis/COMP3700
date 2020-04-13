@@ -21,6 +21,7 @@ public class Main extends Application {
     private Popup PopUp;
     private Account[] accounts = new Account[100];
     private int accountArrayLength = 5; // Initialize to 5 for the 5 demo accounts created
+    private Account accountLoggedIn;
 
     // GUI Interface
     @Override
@@ -48,8 +49,8 @@ public class Main extends Application {
         accounts[0].setPassword("password");
         // Demo league owner account
         accounts[1] = AccountFactory.buildAccount(AccountType.LEAGUEOWNER);
-        accounts[1].setEmail("leagueOwner@email.com");
-        accounts[1].setUsername("leagueOwner");
+        accounts[1].setEmail("leagueowner@email.com");
+        accounts[1].setUsername("leagueowner");
         accounts[1].setPassword("password");
         // Demo league owner account
         accounts[2] = AccountFactory.buildAccount(AccountType.PLAYER);
@@ -211,6 +212,7 @@ public class Main extends Application {
                 TextField password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
                 accounts[accountArrayLength].setPassword(password.getText());
             }
+            accountLoggedIn = accounts[accountArrayLength];
             hidePopUp();
             accountArrayLength++;
         });
@@ -241,13 +243,56 @@ public class Main extends Application {
         Button enterBtn = (Button) accountLoginPopUpPane.lookup("#enter");
         TitledPane finalCreateAccountPopUpPane = accountLoginPopUpPane;
         enterBtn.setOnAction(event -> {
+            TextField username = new TextField();
+            TextField password = new TextField();
+            ;
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
-                TextField username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
+                username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
+            } else {
+                accountLoginPopUp();
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
-                TextField password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
+                password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
+            } else {
+                accountLoginPopUp();
+            }
+
+            for (int i = 0; i < accountArrayLength; i++) {
+                if (accounts[i].getUsername().equals(username.getText()) && accounts[i].getPassword().equals(password.getText())) {
+                    accountLoggedIn = accounts[i];
+                    hidePopUp();
+                    return;
+                }
             }
             hidePopUp();
+            incorrectLoginPopUp();
+        });
+    }
+
+    /**
+     * NAME TOO LONG POPUP
+     * PopUp for when a player tries to enter an invalid username
+     */
+    private void incorrectLoginPopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane incorrectLoginPopUp = null; //calls popup menu created in 'incorrectLoginPopUp.fxml' file
+
+        try {
+            incorrectLoginPopUp = FXMLLoader.load(getClass().getResource("incorrectLoginPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(incorrectLoginPopUp); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) incorrectLoginPopUp.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
+            accountLoginPopUp();
         });
     }
 
