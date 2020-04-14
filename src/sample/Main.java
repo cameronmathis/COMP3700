@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -29,6 +28,9 @@ public class Main extends Application {
     private Tab followingTab;
     private Tab myAdvertisementsTab;
     private MenuButton optionsBtn;
+    private MenuItem defineGameBtn;
+    private MenuItem changeTypeBtn;
+    private MenuItem createLeagueBtn;
 
     // GUI Interface
     @Override
@@ -42,7 +44,14 @@ public class Main extends Application {
         followingTab = tabPane.getTabs().get(2);
         myAdvertisementsTab = tabPane.getTabs().get(3);
         tabPane.getTabs().remove(myAdvertisementsTab);
-        //openingPane.getChildren().remove(openingPane.lookup("#optionsBtn"));
+        // used to chose which options to display
+        optionsBtn = (MenuButton) openingPane.lookup("#optionsBtn");
+        defineGameBtn = optionsBtn.getItems().get(0);
+        optionsBtn.getItems().remove(defineGameBtn);
+        createLeagueBtn = optionsBtn.getItems().get(1);
+        optionsBtn.getItems().remove(createLeagueBtn);
+        changeTypeBtn = optionsBtn.getItems().get(2);
+        optionsBtn.getItems().remove(changeTypeBtn);
 
         /**
          * MAIN STAGE CREATED
@@ -226,12 +235,18 @@ public class Main extends Application {
             TextField password = new TextField();
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#email")).getText().equals(""))) {
                 email = (TextField) finalCreateAccountPopUpPane.lookup("#email");
+            } else {
+                createAccountPopUp();
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
                 username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
+            }else {
+                createAccountPopUp();
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
                 password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
+            }else {
+                createAccountPopUp();
             }
             if (!Operator.verifyAccount(username.getText())) {
                 hidePopUp();
@@ -364,6 +379,15 @@ public class Main extends Application {
      */
     private void setLoggedInAccount(int i) {
         accountLoggedIn = accounts[i];
+
+        if (accountLoggedIn.getType().equals(AccountType.OPERATOR)) {
+            optionsBtn.getItems().add(defineGameBtn);
+        } else {
+            optionsBtn.getItems().add(changeTypeBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
+            optionsBtn.getItems().add(createLeagueBtn);
+        }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
             tabPane.getTabs().add(myAdvertisementsTab);
         }

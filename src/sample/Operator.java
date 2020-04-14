@@ -16,4 +16,10 @@ public class Operator extends Account {
     public static boolean verifyAccount(String username) {
         return true;
     }
+
+    public static void approveAndChange(Account account, AccountType newType) {
+        if (!account.getType().equals(AccountType.OPERATOR) && !account.getType().equals(newType)) {
+            account.setType(newType);
+        }
+    }
 }
