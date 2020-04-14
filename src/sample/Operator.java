@@ -12,4 +12,8 @@ public class Operator extends Account {
         System.out.println("Building operator");
         // add accessories
     }
+
+    public static boolean verifyAccount(String username) {
+        return true;
+    }
 }

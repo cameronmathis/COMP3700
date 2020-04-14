@@ -1,8 +1,6 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -158,14 +156,6 @@ public class Main extends Application {
 
         openingPane.requestFocus();
 
-        Button operatorBtn = (Button) accountTypePopUpPane.lookup("#operator");
-        operatorBtn.setOnAction(event -> {
-            hidePopUp();
-            accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.OPERATOR);
-            createAccountPopUp();
-
-        });
-
         Button leagueOwnerBtn = (Button) accountTypePopUpPane.lookup("#leagueOwner");
         leagueOwnerBtn.setOnAction(event -> {
             hidePopUp();
@@ -199,7 +189,7 @@ public class Main extends Application {
      * CREATE ACCOUNT POPUP
      * PopUp to create new account
      */
-    private void createAccountPopUp() {
+    public void createAccountPopUp() {
         PopUp = new Popup(); //creates new popup
 
         TitledPane createAccountPopUpPane = null; //calls popup menu created in 'accountInfoPopUp.fxml' file
@@ -220,21 +210,62 @@ public class Main extends Application {
         Button enterBtn = (Button) createAccountPopUpPane.lookup("#enter");
         TitledPane finalCreateAccountPopUpPane = createAccountPopUpPane;
         enterBtn.setOnAction(event -> {
+            TextField email = new TextField();
+            TextField username = new TextField();
+            TextField password = new TextField();
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#email")).getText().equals(""))) {
-                TextField email = (TextField) finalCreateAccountPopUpPane.lookup("#email");
-                accounts[accountArrayLength].setEmail(email.getText());
+                email = (TextField) finalCreateAccountPopUpPane.lookup("#email");
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#username")).getText().equals(""))) {
-                TextField username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
-                accounts[accountArrayLength].setUsername(username.getText());
+                username = (TextField) finalCreateAccountPopUpPane.lookup("#username");
             }
             if (!(((TextField) finalCreateAccountPopUpPane.lookup("#password")).getText().equals(""))) {
-                TextField password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
-                accounts[accountArrayLength].setPassword(password.getText());
+                password = (TextField) finalCreateAccountPopUpPane.lookup("#password");
             }
+            if (!Operator.verifyAccount(username.getText())) {
+                hidePopUp();
+                return;
+            }
+            for (int i = 0; i < accountArrayLength; i++) {
+                if (accounts[i].getUsername().equals(username.getText()) || accounts[i].getEmail().equals(email.getText())) {
+                    hidePopUp();
+                    usernameOrEmailAlreadyExistPopUp();
+                    return;
+                }
+            }
+            accounts[accountArrayLength].setEmail(email.getText());
+            accounts[accountArrayLength].setUsername(username.getText());
+            accounts[accountArrayLength].setPassword(password.getText());
             accountLoggedIn = accounts[accountArrayLength];
             hidePopUp();
             accountArrayLength++;
+        });
+    }
+
+    /**
+     * USERNAME ALREADY EXISTS POPUP
+     * PopUp for when a player tries to enter a username or email that already exist
+     */
+    private void usernameOrEmailAlreadyExistPopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane usernameAlreadyExistPopUpPane = null; //calls popup menu created in 'usernameOrEmailAlreadyExistPopUp.fxml' file
+
+        try {
+            usernameAlreadyExistPopUpPane = FXMLLoader.load(getClass().getResource("usernameOrEmailAlreadyExistPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(usernameAlreadyExistPopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) usernameAlreadyExistPopUpPane.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
+            createAccountPopUp();
         });
     }
 
