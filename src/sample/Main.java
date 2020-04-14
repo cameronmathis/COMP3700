@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -22,6 +23,12 @@ public class Main extends Application {
     private Account[] accounts = new Account[100];
     private int accountArrayLength = 5; // Initialize to 5 for the 5 demo accounts created
     private Account accountLoggedIn;
+    private TabPane tabPane;
+    private Tab homeTab;
+    private Tab leagueTab;
+    private Tab followingTab;
+    private Tab myAdvertisementsTab;
+    private MenuButton optionsBtn;
 
     // GUI Interface
     @Override
@@ -29,9 +36,13 @@ public class Main extends Application {
 
         this.primaryStage = primaryStage; //sets this primaryStage as 'the' primaryStage
         openingPane = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-        TabPane tabPane = (TabPane) openingPane.lookup("#tabPane");
-        Tab homeTab = tabPane.getTabs().get(0);
-        Tab leagueTab = tabPane.getTabs().get(1);
+        tabPane = (TabPane) openingPane.lookup("#tabPane");
+        homeTab = tabPane.getTabs().get(0);
+        leagueTab = tabPane.getTabs().get(1);
+        followingTab = tabPane.getTabs().get(2);
+        myAdvertisementsTab = tabPane.getTabs().get(3);
+        tabPane.getTabs().remove(myAdvertisementsTab);
+        //openingPane.getChildren().remove(openingPane.lookup("#optionsBtn"));
 
         /**
          * MAIN STAGE CREATED
@@ -78,9 +89,9 @@ public class Main extends Application {
         leagueTab.setOnSelectionChanged(new EventHandler<Event>() {
             @Override
             public void handle(Event t) {
-                if (leagueTab.isSelected()) {
+                if (leagueTab.isSelected() && accountLoggedIn != null) {
                     if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
-                        System.out.println("yes");
+                        System.out.println("league");
                     }
                 }
             }
@@ -236,7 +247,7 @@ public class Main extends Application {
             accounts[accountArrayLength].setEmail(email.getText());
             accounts[accountArrayLength].setUsername(username.getText());
             accounts[accountArrayLength].setPassword(password.getText());
-            accountLoggedIn = accounts[accountArrayLength];
+            setLoggedInAccount(accountArrayLength);
             hidePopUp();
             accountArrayLength++;
         });
@@ -310,7 +321,7 @@ public class Main extends Application {
 
             for (int i = 0; i < accountArrayLength; i++) {
                 if (accounts[i].getUsername().equals(username.getText()) && accounts[i].getPassword().equals(password.getText())) {
-                    accountLoggedIn = accounts[i];
+                    setLoggedInAccount(i);
                     hidePopUp();
                     return;
                 }
@@ -345,6 +356,17 @@ public class Main extends Application {
             hidePopUp();
             accountLoginPopUp();
         });
+    }
+
+    /**
+     * SET ACCOUNT LOGGED IN
+     * Method to set the logged in account and display appropriate things
+     */
+    private void setLoggedInAccount(int i) {
+        accountLoggedIn = accounts[i];
+        if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
+            tabPane.getTabs().add(myAdvertisementsTab);
+        }
     }
 
     public static void main(String[] args) {
