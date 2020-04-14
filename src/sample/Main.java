@@ -28,7 +28,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         this.primaryStage = primaryStage; //sets this primaryStage as 'the' primaryStage
-        openingPane = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+        openingPane = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         TabPane tabPane = (TabPane) openingPane.lookup("#tabPane");
         Tab homeTab = tabPane.getTabs().get(0);
         Tab leagueTab = tabPane.getTabs().get(1);
@@ -37,7 +37,7 @@ public class Main extends Application {
          * MAIN STAGE CREATED
          * Main Stage and Scene Created and shown
          */
-        openingScene = new Scene(openingPane); //creates a new scene from 'HomePage.fxml'
+        openingScene = new Scene(openingPane); //creates a new scene from 'MainPage.fxml'
         primaryStage.setScene(openingScene); //sets the scene on the stage
         primaryStage.setAlwaysOnTop(false); //set to false to show popups
         primaryStage.setResizable(false); //makes app able to be resized
