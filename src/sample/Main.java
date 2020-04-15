@@ -105,6 +105,10 @@ public class Main extends Application {
                 }
             }
         });
+
+        changeTypeBtn.setOnAction(event -> {
+            accountTypePopUp(1);
+        });
     }
 
     /**
@@ -144,7 +148,7 @@ public class Main extends Application {
         Button createAccountBtn = (Button) newOrReturningUserPopUpPane.lookup("#createAccount");
         createAccountBtn.setOnAction(event -> {
             hidePopUp();
-            accountTypePopUp();
+            accountTypePopUp(0);
 
         });
 
@@ -159,7 +163,7 @@ public class Main extends Application {
      * ACCOUNT TYPE POPUP
      * PopUp to ask user to select an account type
      */
-    private void accountTypePopUp() {
+    private void accountTypePopUp(int x) {
         PopUp = new Popup(); //creates new popup
 
         TitledPane accountTypePopUpPane = null; //calls popup menu created in 'accountTypePopUp.fxml' file
@@ -180,28 +184,44 @@ public class Main extends Application {
         leagueOwnerBtn.setOnAction(event -> {
             hidePopUp();
             accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.LEAGUEOWNER);
-            createAccountPopUp();
+            if (x == 0) {
+                createAccountPopUp();
+            } else if (x == 1) {
+
+            }
         });
 
         Button playerBtn = (Button) accountTypePopUpPane.lookup("#player");
         playerBtn.setOnAction(event -> {
             hidePopUp();
             accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.PLAYER);
-            createAccountPopUp();
+            if (x == 0) {
+                createAccountPopUp();
+            } else if (x == 1) {
+
+            }
         });
 
         Button spectatorBtn = (Button) accountTypePopUpPane.lookup("#spectator");
         spectatorBtn.setOnAction(event -> {
             hidePopUp();
             accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.SPECTATOR);
-            createAccountPopUp();
+            if (x == 0) {
+                createAccountPopUp();
+            } else if (x == 1) {
+
+            }
         });
 
         Button advertiserBtn = (Button) accountTypePopUpPane.lookup("#advertiser");
         advertiserBtn.setOnAction(event -> {
             hidePopUp();
             accounts[accountArrayLength] = AccountFactory.buildAccount(AccountType.ADVERTISER);
-            createAccountPopUp();
+            if (x == 0) {
+                createAccountPopUp();
+            } else if (x == 1) {
+
+            }
         });
     }
 
