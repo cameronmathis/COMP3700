@@ -106,6 +106,10 @@ public class Main extends Application {
             }
         });
 
+        defineGameBtn.setOnAction(event -> {
+            System.out.println("Defining game");
+        });
+
         changeTypeBtn.setOnAction(event -> {
             accountTypePopUp(1);
         });
