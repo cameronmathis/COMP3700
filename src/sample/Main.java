@@ -47,10 +47,10 @@ public class Main extends Application {
         // used to chose which options to display
         optionsBtn = (MenuButton) openingPane.lookup("#optionsBtn");
         defineGameBtn = optionsBtn.getItems().get(0);
-        optionsBtn.getItems().remove(defineGameBtn);
         createLeagueBtn = optionsBtn.getItems().get(1);
-        optionsBtn.getItems().remove(createLeagueBtn);
         changeTypeBtn = optionsBtn.getItems().get(2);
+        optionsBtn.getItems().remove(defineGameBtn);
+        optionsBtn.getItems().remove(createLeagueBtn);
         optionsBtn.getItems().remove(changeTypeBtn);
 
         /**
