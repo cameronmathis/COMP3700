@@ -187,7 +187,11 @@ public class Main extends Application {
             if (x == 0) {
                 createAccountPopUp();
             } else if (x == 1) {
-
+                if (Operator.approveAndChange(accountLoggedIn, AccountType.LEAGUEOWNER)) {
+                    accountTypeChangedPopUp();
+                } else {
+                    accountTypeNotChangedPopUp();
+                }
             }
         });
 
@@ -198,7 +202,11 @@ public class Main extends Application {
             if (x == 0) {
                 createAccountPopUp();
             } else if (x == 1) {
-
+                if (Operator.approveAndChange(accountLoggedIn, AccountType.PLAYER)) {
+                    accountTypeChangedPopUp();
+                } else {
+                    accountTypeNotChangedPopUp();
+                }
             }
         });
 
@@ -209,7 +217,11 @@ public class Main extends Application {
             if (x == 0) {
                 createAccountPopUp();
             } else if (x == 1) {
-
+                if (Operator.approveAndChange(accountLoggedIn, AccountType.SPECTATOR)) {
+                    accountTypeChangedPopUp();
+                } else {
+                    accountTypeNotChangedPopUp();
+                }
             }
         });
 
@@ -220,7 +232,11 @@ public class Main extends Application {
             if (x == 0) {
                 createAccountPopUp();
             } else if (x == 1) {
-
+                if (Operator.approveAndChange(accountLoggedIn, AccountType.ADVERTISER)) {
+                    accountTypeChangedPopUp();
+                } else {
+                    accountTypeNotChangedPopUp();
+                }
             }
         });
     }
@@ -390,6 +406,58 @@ public class Main extends Application {
         dismissBtn.setOnAction(event -> {
             hidePopUp();
             accountLoginPopUp();
+        });
+    }
+
+    /**
+     * ACCOUNT TYPE CHANGED POPUP
+     * PopUp for when a account change is approved
+     */
+    private void accountTypeChangedPopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane accountTypeChangedPopUp = null; //calls popup menu created in 'accountTypeChangedPopUp.fxml' file
+
+        try {
+            accountTypeChangedPopUp = FXMLLoader.load(getClass().getResource("accountTypeChangedPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(accountTypeChangedPopUp); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) accountTypeChangedPopUp.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
+        });
+    }
+
+    /**
+     * ACCOUNT TYPE NOT CHANGED POPUP
+     * PopUp for when a account change is not approved
+     */
+    private void accountTypeNotChangedPopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane accountTypeNotChangedPopUp = null; //calls popup menu created in 'accountTypeNotChangedPopUp.fxml' file
+
+        try {
+            accountTypeNotChangedPopUp = FXMLLoader.load(getClass().getResource("accountTypeNotChangedPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(accountTypeNotChangedPopUp); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) accountTypeNotChangedPopUp.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
         });
     }
 

@@ -17,9 +17,12 @@ public class Operator extends Account {
         return true;
     }
 
-    public static void approveAndChange(Account account, AccountType newType) {
+    public static boolean approveAndChange(Account account, AccountType newType) {
         if (!account.getType().equals(AccountType.OPERATOR) && !account.getType().equals(newType)) {
             account.setType(newType);
+            return true;
         }
+
+        return false;
     }
 }
