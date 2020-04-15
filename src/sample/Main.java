@@ -21,6 +21,8 @@ public class Main extends Application {
     private Popup PopUp;
     private Account[] accounts = new Account[100];
     private int accountArrayLength = 5; // Initialize to 5 for the 5 demo accounts created
+    private Game[] games = new Game[100];
+    private int gameArrayLength = 1; // Initialize to 5 for the 5 demo accounts created
     private Account accountLoggedIn;
     private TabPane tabPane;
     private Tab homeTab;
@@ -91,6 +93,9 @@ public class Main extends Application {
         accounts[4].setUsername("advertiser");
         accounts[4].setPassword("password");
 
+        /** Create 1 demo game */
+        games[0] = new Game.GameDefiner("TicTacToe", 2).requiredPoints(0).define();
+
         /**
          * TAB LISTENER
          * Listen for which tab is selected
@@ -107,7 +112,7 @@ public class Main extends Application {
         });
 
         defineGameBtn.setOnAction(event -> {
-            System.out.println("Defining game");
+            defineGamePopUp();
         });
 
         changeTypeBtn.setOnAction(event -> {
@@ -252,10 +257,10 @@ public class Main extends Application {
     public void createAccountPopUp() {
         PopUp = new Popup(); //creates new popup
 
-        TitledPane createAccountPopUpPane = null; //calls popup menu created in 'accountInfoPopUp.fxml' file
+        TitledPane createAccountPopUpPane = null; //calls popup menu created in 'createAccountPopUp.fxml' file
 
         try {
-            createAccountPopUpPane = FXMLLoader.load(getClass().getResource("accountInfoPopUp.fxml"));
+            createAccountPopUpPane = FXMLLoader.load(getClass().getResource("createAccountPopUp.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -462,6 +467,59 @@ public class Main extends Application {
 
         dismissBtn.setOnAction(event -> {
             hidePopUp();
+        });
+    }
+
+    /**
+     * DEFINE GAME POPUP
+     * PopUp to define a new game
+     */
+    public void defineGamePopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane defineGamePopUp = null; //calls popup menu created in 'defineGamePopUp.fxml' file
+
+        try {
+            defineGamePopUp = FXMLLoader.load(getClass().getResource("defineGamePopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(defineGamePopUp); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        TextField t1 = ((TextField) defineGamePopUp.lookup("#name"));
+        t1.requestFocus();
+
+        Button enterBtn = (Button) defineGamePopUp.lookup("#enter");
+        TitledPane finalDefineGamePopUp = defineGamePopUp;
+        enterBtn.setOnAction(event -> {
+            TextField name = new TextField();
+            TextField numPlayers = new TextField();
+            TextField requiredPoints = new TextField();
+            if (!(((TextField) finalDefineGamePopUp.lookup("#name")).getText().equals(""))) {
+                name = (TextField) finalDefineGamePopUp.lookup("#name");
+            } else {
+                defineGamePopUp();
+            }
+            if (!(((TextField) finalDefineGamePopUp.lookup("#numPlayers")).getText().equals(""))) {
+                numPlayers = (TextField) finalDefineGamePopUp.lookup("#numPlayers");
+            }else {
+                defineGamePopUp();
+            }
+            if (!(((TextField) finalDefineGamePopUp.lookup("#requiredPoints")).getText().equals(""))) {
+                requiredPoints = (TextField) finalDefineGamePopUp.lookup("#requiredPoints");
+            }else {
+                requiredPoints = null;
+            }
+            if (requiredPoints != null) {
+                games[gameArrayLength] = new Game.GameDefiner(name.getText(), Integer.parseInt(numPlayers.getText())).requiredPoints(Integer.parseInt(requiredPoints.getText())).define();
+            } else {
+                games[gameArrayLength] = new Game.GameDefiner(name.getText(), Integer.parseInt(numPlayers.getText())).define();
+            }
+            hidePopUp();
+            gameArrayLength++;
         });
     }
 
