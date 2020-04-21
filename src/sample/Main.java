@@ -19,8 +19,8 @@ public class Main extends Application {
     private AnchorPane openingPane;
     private Scene openingScene;
     private Popup PopUp;
-    private Account[] accounts = new Account[100];
-    private int accountArrayLength = 5; // Initialize to 5 for the 5 demo accounts created
+    private Account[] accounts = Accounts.accounts;
+    private int accountArrayLength = Accounts.accountArrayLength; // Initialize to 5 for the 5 demo accounts created
     private Game[] games = new Game[100];
     private int gameArrayLength = 1; // Initialize to 5 for the 5 demo accounts created
     private Account accountLoggedIn;
@@ -297,13 +297,13 @@ public class Main extends Application {
                 hidePopUp();
                 return;
             }
-            for (int i = 0; i < accountArrayLength; i++) {
-                if (accounts[i].getUsername().equals(username.getText()) || accounts[i].getEmail().equals(email.getText())) {
-                    hidePopUp();
-                    usernameOrEmailAlreadyExistPopUp();
-                    return;
-                }
+
+            if (!AccountController.checkCredentials(username, email, password)) {
+                hidePopUp();
+                usernameOrEmailAlreadyExistPopUp();
+                return;
             }
+
             accounts[accountArrayLength].setEmail(email.getText());
             accounts[accountArrayLength].setUsername(username.getText());
             accounts[accountArrayLength].setPassword(password.getText());
