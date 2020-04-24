@@ -12,4 +12,9 @@ public class Spectator extends Account {
         System.out.println("Building spectator");
         // add accessories
     }
+
+    public static void displayMatch(int matchID) {
+        //streams the match to the spectator requesting the match.
+    }
+
 }
