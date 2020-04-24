@@ -31,4 +31,25 @@ public class Accounts {
         }
         return true;
     }
+
+    public static Account find(String username) {
+        for (int i = 0; i < accountArrayLength; i++) {
+            if (accounts[i].getUsername().equals(username)) {
+                return accounts[i];
+            }
+        }
+        return null;
+    }
+
+    public static boolean canJoinMatch(String username) {
+        Account foundAccount = find(username);
+        if (foundAccount == null) {
+            return false;
+        }
+        AccountType usernameType = foundAccount.getType();
+        if (usernameType.toString().equals("Player")) {
+            return true;
+        }
+        return false;
+    }
 }
