@@ -552,16 +552,22 @@ public class Main extends Application {
      * Method to set the options button
      */
     private void setOptionsBtn() {
-        if (accountLoggedIn.getType().equals(AccountType.OPERATOR)) {
+        if (accountLoggedIn.getType().equals(AccountType.OPERATOR) && !optionsBtn.getItems().contains(defineGameBtn)) {
             optionsBtn.getItems().add(defineGameBtn);
-        } else {
+        } else if (!optionsBtn.getItems().contains(changeTypeBtn)) {
             optionsBtn.getItems().add(changeTypeBtn);
+        } else if (optionsBtn.getItems().contains(defineGameBtn)) {
+            optionsBtn.getItems().remove(defineGameBtn);
         }
-        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER) && !optionsBtn.getItems().contains(createLeagueBtn)) {
             optionsBtn.getItems().add(createLeagueBtn);
+        } else if (optionsBtn.getItems().contains(createLeagueBtn)) {
+            optionsBtn.getItems().remove(createLeagueBtn);
         }
-        if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
+        if (accountLoggedIn.getType().equals(AccountType.ADVERTISER) && !tabPane.getTabs().contains(myAdvertisementsTab)) {
             tabPane.getTabs().add(myAdvertisementsTab);
+        } else if (tabPane.getTabs().contains(myAdvertisementsTab)) {
+            tabPane.getTabs().remove(myAdvertisementsTab);
         }
     }
 
