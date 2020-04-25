@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce59367c-d1cc-48b8-8503-1d106b43504e" name="Default Changelist" comment="Added classes and methods from spectateMatch collaboration diagram" />
+    <list default="true" id="ce59367c-d1cc-48b8-8503-1d106b43504e" name="Default Changelist" comment="Added classes and methods from spectateMatch collaboration diagram">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,9 +41,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="COMP3700" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -50,6 +67,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587685703539</updated>
+      <workItem from="1587744362756" duration="733000" />
+      <workItem from="1587831639926" duration="120000" />
+      <workItem from="1587835301298" duration="2221000" />
     </task>
     <task id="LOCAL-00001" summary="Added classes and methods from spectateMatch collaboration diagram">
       <created>1587688481174</created>
@@ -61,6 +81,9 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -71,6 +94,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added classes and methods from spectateMatch collaboration diagram" />
@@ -81,6 +105,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2800" y="98" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1587685929647" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587831736494">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587831736494" />
     <state x="2663" y="414" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587686032889">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -89,9 +117,70 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1587685961107" />
+    <state width="1877" height="249" key="GridCell.Tab.0.bottom" timestamp="1587838600578">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.0.bottom/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838600578" />
+    <state width="1877" height="249" key="GridCell.Tab.0.center" timestamp="1587838600577">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.0.center/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838600577" />
+    <state width="1877" height="249" key="GridCell.Tab.0.left" timestamp="1587838600577">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.0.left/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838600577" />
+    <state width="1877" height="249" key="GridCell.Tab.0.right" timestamp="1587838600578">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.0.right/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838600578" />
+    <state width="1877" height="249" key="GridCell.Tab.1.bottom" timestamp="1587838611757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.1.bottom/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838611757" />
+    <state width="1877" height="249" key="GridCell.Tab.1.center" timestamp="1587838611757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.1.center/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838611757" />
+    <state width="1877" height="249" key="GridCell.Tab.1.left" timestamp="1587838611757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.1.left/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838611757" />
+    <state width="1877" height="249" key="GridCell.Tab.1.right" timestamp="1587838611757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="249" key="GridCell.Tab.1.right/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587838611757" />
+    <state x="702" y="73" key="SettingsEditor" timestamp="1587835390684">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="702" y="73" key="SettingsEditor/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587835390684" />
     <state x="2472" y="253" key="Vcs.Push.Dialog.v2" timestamp="1587688487983">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2472" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1587688487983" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587831662653">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.-65.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1587831662653" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
+          <line>560</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/Accounts.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sample/AccountController.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

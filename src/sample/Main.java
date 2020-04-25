@@ -197,6 +197,7 @@ public class Main extends Application {
                 createAccountPopUp();
             } else if (x == 1) {
                 if (Operator.approveAndChange(accountLoggedIn, AccountType.LEAGUEOWNER)) {
+                    setOptionsBtn();
                     accountTypeChangedPopUp();
                 } else {
                     accountTypeNotChangedPopUp();
@@ -212,6 +213,7 @@ public class Main extends Application {
                 createAccountPopUp();
             } else if (x == 1) {
                 if (Operator.approveAndChange(accountLoggedIn, AccountType.PLAYER)) {
+                    setOptionsBtn();
                     accountTypeChangedPopUp();
                 } else {
                     accountTypeNotChangedPopUp();
@@ -227,6 +229,7 @@ public class Main extends Application {
                 createAccountPopUp();
             } else if (x == 1) {
                 if (Operator.approveAndChange(accountLoggedIn, AccountType.SPECTATOR)) {
+                    setOptionsBtn();
                     accountTypeChangedPopUp();
                 } else {
                     accountTypeNotChangedPopUp();
@@ -242,6 +245,7 @@ public class Main extends Application {
                 createAccountPopUp();
             } else if (x == 1) {
                 if (Operator.approveAndChange(accountLoggedIn, AccountType.ADVERTISER)) {
+                    setOptionsBtn();
                     accountTypeChangedPopUp();
                 } else {
                     accountTypeNotChangedPopUp();
@@ -300,7 +304,7 @@ public class Main extends Application {
 
             if (!AccountController.checkCredentials(username, email, password)) {
                 hidePopUp();
-                usernameOrEmailAlreadyExistPopUp();
+                invalidCredentialsPopUp();
                 return;
             }
 
@@ -314,25 +318,25 @@ public class Main extends Application {
     }
 
     /**
-     * USERNAME ALREADY EXISTS POPUP
-     * PopUp for when a player tries to enter a username or email that already exist
+     * INVALID CREDENTIALS POPUP
+     * PopUp for when a player tries to enter a username or email that already exist or is null
      */
-    private void usernameOrEmailAlreadyExistPopUp() {
+    private void invalidCredentialsPopUp() {
         PopUp = new Popup(); //creates new popup
 
-        TitledPane usernameAlreadyExistPopUpPane = null; //calls popup menu created in 'usernameOrEmailAlreadyExistPopUp.fxml' file
+        TitledPane invalidCredentialsPopUpPane = null; //calls popup menu created in 'invalidCredentialsPopUp.fxml' file
 
         try {
-            usernameAlreadyExistPopUpPane = FXMLLoader.load(getClass().getResource("usernameOrEmailAlreadyExistPopUp.fxml"));
+            invalidCredentialsPopUpPane = FXMLLoader.load(getClass().getResource("invalidCredentialsPopUp.fxml"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        PopUp.getContent().add(usernameAlreadyExistPopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
+        PopUp.getContent().add(invalidCredentialsPopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
 
         //show popup on primaryStage
         PopUp.show(primaryStage);
 
-        Button dismissBtn = (Button) usernameAlreadyExistPopUpPane.lookup("#dismiss");
+        Button dismissBtn = (Button) invalidCredentialsPopUpPane.lookup("#dismiss");
 
         dismissBtn.setOnAction(event -> {
             hidePopUp();
@@ -530,6 +534,24 @@ public class Main extends Application {
     private void setLoggedInAccount(int i) {
         accountLoggedIn = accounts[i];
 
+        if (accountLoggedIn.getType().equals(AccountType.OPERATOR)) {
+            optionsBtn.getItems().add(defineGameBtn);
+        } else {
+            optionsBtn.getItems().add(changeTypeBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
+            optionsBtn.getItems().add(createLeagueBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
+            tabPane.getTabs().add(myAdvertisementsTab);
+        }
+    }
+
+    /**
+     * SET OPTIONS BUTTON
+     * Method to set the options button
+     */
+    private void setOptionsBtn() {
         if (accountLoggedIn.getType().equals(AccountType.OPERATOR)) {
             optionsBtn.getItems().add(defineGameBtn);
         } else {
