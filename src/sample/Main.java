@@ -22,7 +22,7 @@ public class Main extends Application {
     private Account[] accounts = Accounts.accounts;
     private int accountArrayLength = Accounts.accountArrayLength; // Initialize to 5 for the 5 demo accounts created
     private Game[] games = new Game[100];
-    private int gameArrayLength = 1; // Initialize to 5 for the 5 demo accounts created
+    private int gameArrayLength = 1; // Initialize to 1 for the 1 game created
     private Account accountLoggedIn;
     private TabPane tabPane;
     private Tab homeTab;
