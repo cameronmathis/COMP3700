@@ -1,6 +1,7 @@
 package sample;
 import java.util.ArrayList;
 
+// NOTE: matchController will construct matches.
 public class Match extends matchController {
 
     public boolean matchStatus;
