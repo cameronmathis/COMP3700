@@ -33,6 +33,8 @@ public class Main extends Application {
     private MenuItem defineGameBtn;
     private MenuItem changeTypeBtn;
     private MenuItem createLeagueBtn;
+    private League[] leagues = Leagues.leagues;
+    private int leagueArrayLength = Leagues.leagueArrayLength;
 
     // GUI Interface
     @Override
@@ -96,6 +98,11 @@ public class Main extends Application {
         /** Create 1 demo game */
         games[0] = new Game.GameDefiner("TicTacToe", 2).requiredPoints(0).define();
 
+        /** Create 1 demo league */
+        leagues[0] = new League();
+        leagues[0].setLeagueName("League Name");
+        leagues[0].setNumMembers("100");
+
         /**
          * TAB LISTENER
          * Listen for which tab is selected
@@ -117,6 +124,10 @@ public class Main extends Application {
 
         changeTypeBtn.setOnAction(event -> {
             accountTypePopUp(1);
+        });
+
+        createLeagueBtn.setOnAction(event -> {
+            createLeaguePopUp();
         });
     }
 
@@ -571,7 +582,76 @@ public class Main extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
+    public void createLeaguePopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane createLeaguePopUpPane = null; //calls popup menu created in 'createLeaguePopUp.fxml' file
+
+        try {
+            createLeaguePopUpPane = FXMLLoader.load(getClass().getResource("createLeaguePopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(createLeaguePopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        TextField t1 = ((TextField) createLeaguePopUpPane.lookup("#leagueName"));
+        t1.requestFocus();
+
+        Button enterBtn = (Button) createLeaguePopUpPane.lookup("#enter");
+        TitledPane finalCreateLeaguePopUpPane = createLeaguePopUpPane;
+        enterBtn.setOnAction(event -> {
+            TextField leagueName = new TextField();
+            TextField numMembers = new TextField();
+            if (!(((TextField) finalCreateLeaguePopUpPane.lookup("#leagueName")).getText().equals(""))) {
+                leagueName = (TextField) finalCreateLeaguePopUpPane.lookup("#leagueName");
+            } else {
+                createLeaguePopUp();
+            }
+            if (!(((TextField) finalCreateLeaguePopUpPane.lookup("#numMembers")).getText().equals(""))) {
+                numMembers = (TextField) finalCreateLeaguePopUpPane.lookup("#numMembers");
+            } else {
+                createLeaguePopUp();
+            }
+
+            if (!Leagues.checkLeagueName(leagueName)) {
+                hidePopUp();
+                invalidLeagueNamePopUp();
+                return;
+            }
+
+            leagues[leagueArrayLength] = new League();
+            leagues[leagueArrayLength].setLeagueName(leagueName.getText());
+            leagues[leagueArrayLength].setNumMembers(numMembers.getText());
+            leagueArrayLength++;
+            hidePopUp();
+        });
     }
+
+    private void invalidLeagueNamePopUp() {
+        PopUp = new Popup(); //creates new popup
+
+        TitledPane invalidLeagueNamePopUpPane = null; //calls popup menu created in 'invalidLeagueNamePopUp.fxml' file
+
+        try {
+            invalidLeagueNamePopUpPane = FXMLLoader.load(getClass().getResource("invalidLeagueNamePopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(invalidLeagueNamePopUpPane); //adds the popup (child) created in fxml file to the popup (parent) created
+
+        //show popup on primaryStage
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) invalidLeagueNamePopUpPane.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
+            createLeaguePopUp();
+        });
+    }
+
+    public static void main(String[] args) { Application.launch(args); }
 }
