@@ -87,6 +87,8 @@
                                                                   text="Create League"/>
                                                         <MenuItem fx:id="changeTypeBtn" mnemonicParsing="false"
                                                                   text="Change Type"/>
+                                                        <MenuItem fx:id="createMatchBtn" mnemonicParsing="false"
+                                                                  text="Create Match"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>

@@ -19,18 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce59367c-d1cc-48b8-8503-1d106b43504e" name="Default Changelist" comment="added workspace.xml to gitignore">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/League.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/Leagues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/createLeaguePopUp.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/invalidLeagueNamePopUp.fxml" afterDir="false" />
+    <list default="true" id="1fe6536b-b197-459f-be3d-ce4cdf06cf12" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/sample/createMatchPopUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/COMP3700.iml" beforeDir="false" afterPath="$PROJECT_DIR$/COMP3700.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/META-INF/COMP3700.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/Match.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/Match.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/Tournament.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/Tournament.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/matchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/matchController.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +49,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1axmd7q32pHOsJlliOOQ0jWLF1u" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -61,12 +66,25 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Cameron Mathis\IdeaProjects\COMP3700" />
       <recent name="C:\Users\Cameron Mathis\IdeaProjects\COMP3700\src" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
@@ -83,7 +101,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ce59367c-d1cc-48b8-8503-1d106b43504e" name="Default Changelist" comment="" />
+      <changelist id="1fe6536b-b197-459f-be3d-ce4cdf06cf12" name="Default Changelist" comment="" />
       <created>1587685703539</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -91,6 +109,7 @@
       <workItem from="1587744362756" duration="733000" />
       <workItem from="1587831639926" duration="120000" />
       <workItem from="1587835301298" duration="5258000" />
+      <workItem from="1588030165790" duration="642000" />
     </task>
     <task id="LOCAL-00001" summary="Added classes and methods from spectateMatch collaboration diagram">
       <created>1587688481174</created>
@@ -124,7 +143,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -141,12 +160,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added classes and methods from spectateMatch collaboration diagram" />

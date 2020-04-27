@@ -6,6 +6,7 @@ public class Match extends matchController {
 
     public boolean matchStatus;
     public int matchID;
+    public String matchName;
     public static int matchCounter = 0;
     public ArrayList<Account> playerList;
 
@@ -28,4 +29,10 @@ public class Match extends matchController {
         }
         return false;
     }
+
+    public int getMatchID() { return matchID; }
+
+    public String getMatchName() { return matchName; }
+
+    public void setMatchName(String name) { matchName = name; }
 }

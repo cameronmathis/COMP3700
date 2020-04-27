@@ -33,8 +33,11 @@ public class Main extends Application {
     private MenuItem defineGameBtn;
     private MenuItem changeTypeBtn;
     private MenuItem createLeagueBtn;
+    private MenuItem createMatchBtn;
     private League[] leagues = Leagues.leagues;
     private int leagueArrayLength = Leagues.leagueArrayLength;
+    private Match[] matches = matchController.getMatches();
+    private int matchArrayLength = matchController.getMatchAmount();
 
     // GUI Interface
     @Override
@@ -53,9 +56,11 @@ public class Main extends Application {
         defineGameBtn = optionsBtn.getItems().get(0);
         createLeagueBtn = optionsBtn.getItems().get(1);
         changeTypeBtn = optionsBtn.getItems().get(2);
+        createMatchBtn = optionsBtn.getItems().get(3);
         optionsBtn.getItems().remove(defineGameBtn);
         optionsBtn.getItems().remove(createLeagueBtn);
         optionsBtn.getItems().remove(changeTypeBtn);
+        optionsBtn.getItems().remove(createMatchBtn);
 
         /**
          * MAIN STAGE CREATED
@@ -128,6 +133,10 @@ public class Main extends Application {
 
         createLeagueBtn.setOnAction(event -> {
             createLeaguePopUp();
+        });
+
+        createMatchBtn.setOnAction(event -> {
+            createMatchPopUp();
         });
     }
 
@@ -553,6 +562,9 @@ public class Main extends Application {
         if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
             optionsBtn.getItems().add(createLeagueBtn);
         }
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) { // TODO: make a check for active league tournaments before matchees are created
+            optionsBtn.getItems().add(createMatchBtn);
+        }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
             tabPane.getTabs().add(myAdvertisementsTab);
         }
@@ -574,6 +586,11 @@ public class Main extends Application {
             optionsBtn.getItems().add(createLeagueBtn);
         } else if (optionsBtn.getItems().contains(createLeagueBtn)) {
             optionsBtn.getItems().remove(createLeagueBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER) && !optionsBtn.getItems().contains(createMatchBtn)) {
+            optionsBtn.getItems().add(createMatchBtn);
+        } else if (optionsBtn.getItems().contains(createMatchBtn)) {
+            optionsBtn.getItems().remove(createMatchBtn);
         }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER) && !tabPane.getTabs().contains(myAdvertisementsTab)) {
             tabPane.getTabs().add(myAdvertisementsTab);
@@ -626,6 +643,41 @@ public class Main extends Application {
             leagues[leagueArrayLength].setLeagueName(leagueName.getText());
             leagues[leagueArrayLength].setNumMembers(numMembers.getText());
             leagueArrayLength++;
+            hidePopUp();
+        });
+    }
+
+    private void createMatchPopUp() {
+        PopUp = new Popup();
+
+        TitledPane createMatchPopUpPane = null;
+
+        try {
+            createMatchPopUpPane = FXMLLoader.load(getClass().getResource("createMatchPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(createMatchPopUpPane);
+
+
+        PopUp.show(primaryStage);
+
+        assert createMatchPopUpPane != null;
+        TextField t1 = ((TextField) createMatchPopUpPane.lookup("#MatchName"));
+
+        Button enterBtn = (Button) createMatchPopUpPane.lookup("#enter");
+        TitledPane finalCreateMatchPopUpPane = createMatchPopUpPane;
+        enterBtn.setOnAction(event -> {
+            TextField MatchName = new TextField();
+            if (!(((TextField) finalCreateMatchPopUpPane.lookup("#MatchName")).getText().equals(""))) {
+                MatchName = (TextField) finalCreateMatchPopUpPane.lookup("#MatchName");
+            } else {
+                createMatchPopUp();
+            }
+
+            matches[matchArrayLength] = new Match();
+            matches[matchArrayLength].setMatchName(MatchName.getText());
+            matchArrayLength++;
             hidePopUp();
         });
     }

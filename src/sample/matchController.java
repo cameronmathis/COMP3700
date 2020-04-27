@@ -1,9 +1,11 @@
 package sample;
 
+import java.util.ArrayList;
+
 /**
  * matchController facilitates players joining matches and allows for the creation and storage of all running matches.
  */
-public class matchController {
+public class matchController extends tournamentController{
    private static Match[] matches = new Match[100];
    private static int matchAmount = 0;
 
@@ -21,7 +23,14 @@ public class matchController {
    }
 
    // Returns match amount.
-   public int getMatchAmount() {
+   public static int getMatchAmount() {
       return matchAmount;
+   }
+
+   // Returns matches array.
+   public static Match[] getMatches() { return matches; }
+
+   public static ArrayList<Account> getPlayers(Match matchName) {
+      return matchName.playerList;
    }
 }
