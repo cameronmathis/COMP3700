@@ -3,7 +3,8 @@ package sample;
 import sample.Advertisement;
 import sample.Match;
 
-public class Tournament {
+// NOTE: tournamentController will construct tournaments.
+public class Tournament extends tournamentController{
 
     public static Match[] matches = new Match[100];
     public static int matchesArrayLength = 10;
