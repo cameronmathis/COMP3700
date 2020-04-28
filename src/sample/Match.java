@@ -9,6 +9,7 @@ public class Match extends matchController {
     public String matchName;
     public static int matchCounter = 0;
     public ArrayList<Account> playerList;
+    public ArrayList<Account> spectatorList;
 
     public Match() {
         matchID = matchCounter;
@@ -28,6 +29,10 @@ public class Match extends matchController {
             return true;
         }
         return false;
+    }
+
+    public void acceptSpectator(Account spectator) {
+        playerList.add(spectator);
     }
 
     public int getMatchID() { return matchID; }

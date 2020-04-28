@@ -89,6 +89,10 @@
                                                                   text="Change Type"/>
                                                         <MenuItem fx:id="createMatchBtn" mnemonicParsing="false"
                                                                   text="Create Match"/>
+                                                        <MenuItem fx:id="joinMatchBtn" mnemonicParsing="false"
+                                                                  text="Join Match"/>
+                                                        <MenuItem fx:id="viewMatchBtn" mnemonicParsing="false"
+                                                                  text="View Match"/>
                                                     </items>
                                                 </MenuButton>
                                             </children>

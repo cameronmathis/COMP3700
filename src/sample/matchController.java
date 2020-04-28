@@ -33,4 +33,6 @@ public class matchController extends tournamentController{
    public static ArrayList<Account> getPlayers(Match matchName) {
       return matchName.playerList;
    }
+
+   public static ArrayList<Account> getSpectators(Match matchName) { return matchName.spectatorList; }
 }

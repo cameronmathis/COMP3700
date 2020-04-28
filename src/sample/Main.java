@@ -35,6 +35,7 @@ public class Main extends Application {
     private MenuItem createLeagueBtn;
     private MenuItem createMatchBtn;
     private MenuItem joinMatchBtn;
+    private MenuItem viewMatchBtn;
     private League[] leagues = Leagues.leagues;
     private int leagueArrayLength = Leagues.leagueArrayLength;
     private Match[] matches = matchController.getMatches();
@@ -59,6 +60,7 @@ public class Main extends Application {
         changeTypeBtn = optionsBtn.getItems().get(2);
         createMatchBtn = optionsBtn.getItems().get(3);
         joinMatchBtn = optionsBtn.getItems().get(4);
+        viewMatchBtn = optionsBtn.getItems().get(5);
         optionsBtn.getItems().remove(defineGameBtn);
         optionsBtn.getItems().remove(createLeagueBtn);
         optionsBtn.getItems().remove(changeTypeBtn);
@@ -144,6 +146,10 @@ public class Main extends Application {
 
         joinMatchBtn.setOnAction(event -> {
             joinMatchPopUp();
+        });
+
+        viewMatchBtn.setOnAction(event -> {
+            viewMatchPopUp();
         });
     }
 
@@ -569,7 +575,7 @@ public class Main extends Application {
         if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
             optionsBtn.getItems().add(createLeagueBtn);
         }
-        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) { // TODO: make a check for active league tournaments before matchees are created
+        if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) {
             optionsBtn.getItems().add(createMatchBtn);
         }
         if (accountLoggedIn.getType().equals(AccountType.PLAYER)) {
@@ -577,6 +583,9 @@ public class Main extends Application {
         }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
             tabPane.getTabs().add(myAdvertisementsTab);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.SPECTATOR)) {
+            optionsBtn.getItems().add(viewMatchBtn);
         }
     }
 
@@ -606,6 +615,11 @@ public class Main extends Application {
             optionsBtn.getItems().add(joinMatchBtn);
         } else if (optionsBtn.getItems().contains(joinMatchBtn)) {
             optionsBtn.getItems().remove(joinMatchBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.SPECTATOR) && !optionsBtn.getItems().contains(viewMatchBtn)) {
+            optionsBtn.getItems().add(joinMatchBtn);
+        } else if (optionsBtn.getItems().contains(viewMatchBtn)) {
+            optionsBtn.getItems().remove(viewMatchBtn);
         }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER) && !tabPane.getTabs().contains(myAdvertisementsTab)) {
             tabPane.getTabs().add(myAdvertisementsTab);
@@ -728,6 +742,43 @@ public class Main extends Application {
             for (int i = 0; i < matchArrayLength; i++) {
                 if (MatchName.getText().equals(matches[i].getMatchName())) {
                     matches[i].acceptPlayer(accountLoggedIn);
+                }
+            }
+            hidePopUp();
+        });
+    }
+
+    private void viewMatchPopUp() {
+        PopUp = new Popup();
+
+        TitledPane viewMatchPopUpPane = null;
+
+        try {
+            viewMatchPopUpPane = FXMLLoader.load(getClass().getResource("viewMatchPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(viewMatchPopUpPane);
+
+
+        PopUp.show(primaryStage);
+
+        assert viewMatchPopUpPane != null;
+        TextField t1 = ((TextField) viewMatchPopUpPane.lookup("#MatchName"));
+
+        Button enterBtn = (Button) viewMatchPopUpPane.lookup("#enter");
+        TitledPane finalviewMatchPopUpPane = viewMatchPopUpPane;
+        enterBtn.setOnAction(event -> {
+            TextField MatchName = new TextField();
+            if (!(((TextField) finalviewMatchPopUpPane.lookup("#MatchName")).getText().equals(""))) {
+                MatchName = (TextField) finalviewMatchPopUpPane.lookup("#MatchName");
+            } else {
+                viewMatchPopUp();
+            }
+
+            for (int i = 0; i < matchArrayLength; i++) {
+                if (MatchName.getText().equals(matches[i].getMatchName())) {
+                    matches[i].acceptSpectator(accountLoggedIn);
                 }
             }
             hidePopUp();
