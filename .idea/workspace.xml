@@ -20,16 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fe6536b-b197-459f-be3d-ce4cdf06cf12" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/createMatchPopUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample/invalidMatchNamePopUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/Match.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/Match.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/COMP3700/sample/Tournament.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/COMP3700/sample/Tournament.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/matchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/matchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/createMatchPopUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/createMatchPopUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/joinMatchPopUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/joinMatchPopUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/viewMatchPopUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/viewMatchPopUp.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +105,9 @@
       <workItem from="1587744362756" duration="733000" />
       <workItem from="1587831639926" duration="120000" />
       <workItem from="1587835301298" duration="5258000" />
-      <workItem from="1588030165790" duration="642000" />
+      <workItem from="1588030165790" duration="1079000" />
+      <workItem from="1588031350754" duration="2890000" />
+      <workItem from="1588045189816" duration="2302000" />
     </task>
     <task id="LOCAL-00001" summary="Added classes and methods from spectateMatch collaboration diagram">
       <created>1587688481174</created>
@@ -139,7 +137,28 @@
       <option name="project" value="LOCAL" />
       <updated>1587842849295</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implemented createMatch button">
+      <created>1588031092407</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588031092407</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implemented joinMatch button">
+      <created>1588038078964</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588038078964</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Implemented viewMatch button">
+      <created>1588039283635</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588039283635</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +192,10 @@
     <MESSAGE value="fixed bug with creating accounts" />
     <MESSAGE value="added workspace.xml to gitignore" />
     <MESSAGE value="fixed comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed comment" />
+    <MESSAGE value="Implemented createMatch button" />
+    <MESSAGE value="Implemented joinMatch button" />
+    <MESSAGE value="Implemented viewMatch button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented viewMatch button" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2800" y="98" key="#Project_Structure" timestamp="1587685929647">

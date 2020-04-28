@@ -739,10 +739,15 @@ public class Main extends Application {
                 joinMatchPopUp();
             }
 
+            boolean found = false;
             for (int i = 0; i < matchArrayLength; i++) {
                 if (MatchName.getText().equals(matches[i].getMatchName())) {
                     matches[i].acceptPlayer(accountLoggedIn);
+                    found = true;
                 }
+            }
+            if (!found) {
+                invalidMatchNamePopUp();
             }
             hidePopUp();
         });
@@ -776,10 +781,15 @@ public class Main extends Application {
                 viewMatchPopUp();
             }
 
+            boolean found = false;
             for (int i = 0; i < matchArrayLength; i++) {
                 if (MatchName.getText().equals(matches[i].getMatchName())) {
                     matches[i].acceptSpectator(accountLoggedIn);
+                    found = true;
                 }
+            }
+            if (!found) {
+                invalidMatchNamePopUp();
             }
             hidePopUp();
         });
@@ -805,6 +815,29 @@ public class Main extends Application {
         dismissBtn.setOnAction(event -> {
             hidePopUp();
             createLeaguePopUp();
+        });
+    }
+
+    private void invalidMatchNamePopUp() {
+        PopUp = new Popup();
+        System.out.println("Invalid name request");
+
+        TitledPane invalidMatchNamePopUpPane = null;
+
+        try {
+            invalidMatchNamePopUpPane = FXMLLoader.load(getClass().getResource("invalidMatchNamePopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(invalidMatchNamePopUpPane);
+
+        PopUp.show(primaryStage);
+
+        Button dismissBtn = (Button) invalidMatchNamePopUpPane.lookup("#dismiss");
+
+        dismissBtn.setOnAction(event -> {
+            hidePopUp();
+            invalidMatchNamePopUp();
         });
     }
 

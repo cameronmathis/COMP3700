@@ -29,7 +29,7 @@
             <children>
                 <Text opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter the following information" textAlignment="CENTER" wrappingWidth="206.19531297683716" GridPane.columnIndex="1" />
                 <Text opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Name:" textAlignment="CENTER" wrappingWidth="79.142578125" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="leagueName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="MatchName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Button fx:id="enter" mnemonicParsing="false" text="Enter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             </children>
         </GridPane>
