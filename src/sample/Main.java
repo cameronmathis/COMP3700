@@ -34,6 +34,7 @@ public class Main extends Application {
     private MenuItem changeTypeBtn;
     private MenuItem createLeagueBtn;
     private MenuItem createMatchBtn;
+    private MenuItem joinMatchBtn;
     private League[] leagues = Leagues.leagues;
     private int leagueArrayLength = Leagues.leagueArrayLength;
     private Match[] matches = matchController.getMatches();
@@ -57,10 +58,12 @@ public class Main extends Application {
         createLeagueBtn = optionsBtn.getItems().get(1);
         changeTypeBtn = optionsBtn.getItems().get(2);
         createMatchBtn = optionsBtn.getItems().get(3);
+        joinMatchBtn = optionsBtn.getItems().get(4);
         optionsBtn.getItems().remove(defineGameBtn);
         optionsBtn.getItems().remove(createLeagueBtn);
         optionsBtn.getItems().remove(changeTypeBtn);
         optionsBtn.getItems().remove(createMatchBtn);
+        optionsBtn.getItems().remove(joinMatchBtn);
 
         /**
          * MAIN STAGE CREATED
@@ -137,6 +140,10 @@ public class Main extends Application {
 
         createMatchBtn.setOnAction(event -> {
             createMatchPopUp();
+        });
+
+        joinMatchBtn.setOnAction(event -> {
+            joinMatchPopUp();
         });
     }
 
@@ -565,6 +572,9 @@ public class Main extends Application {
         if (accountLoggedIn.getType().equals(AccountType.LEAGUEOWNER)) { // TODO: make a check for active league tournaments before matchees are created
             optionsBtn.getItems().add(createMatchBtn);
         }
+        if (accountLoggedIn.getType().equals(AccountType.PLAYER)) {
+            optionsBtn.getItems().add(joinMatchBtn);
+        }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER)) {
             tabPane.getTabs().add(myAdvertisementsTab);
         }
@@ -591,6 +601,11 @@ public class Main extends Application {
             optionsBtn.getItems().add(createMatchBtn);
         } else if (optionsBtn.getItems().contains(createMatchBtn)) {
             optionsBtn.getItems().remove(createMatchBtn);
+        }
+        if (accountLoggedIn.getType().equals(AccountType.PLAYER) && !optionsBtn.getItems().contains(createMatchBtn)) {
+            optionsBtn.getItems().add(joinMatchBtn);
+        } else if (optionsBtn.getItems().contains(joinMatchBtn)) {
+            optionsBtn.getItems().remove(joinMatchBtn);
         }
         if (accountLoggedIn.getType().equals(AccountType.ADVERTISER) && !tabPane.getTabs().contains(myAdvertisementsTab)) {
             tabPane.getTabs().add(myAdvertisementsTab);
@@ -678,6 +693,43 @@ public class Main extends Application {
             matches[matchArrayLength] = new Match();
             matches[matchArrayLength].setMatchName(MatchName.getText());
             matchArrayLength++;
+            hidePopUp();
+        });
+    }
+
+    private void joinMatchPopUp() {
+        PopUp = new Popup();
+
+        TitledPane joinMatchPopUpPane = null;
+
+        try {
+            joinMatchPopUpPane = FXMLLoader.load(getClass().getResource("joinMatchPopUp.fxml"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        PopUp.getContent().add(joinMatchPopUpPane);
+
+
+        PopUp.show(primaryStage);
+
+        assert joinMatchPopUpPane != null;
+        TextField t1 = ((TextField) joinMatchPopUpPane.lookup("#MatchName"));
+
+        Button enterBtn = (Button) joinMatchPopUpPane.lookup("#enter");
+        TitledPane finaljoinMatchPopUpPane = joinMatchPopUpPane;
+        enterBtn.setOnAction(event -> {
+            TextField MatchName = new TextField();
+            if (!(((TextField) finaljoinMatchPopUpPane.lookup("#MatchName")).getText().equals(""))) {
+                MatchName = (TextField) finaljoinMatchPopUpPane.lookup("#MatchName");
+            } else {
+                joinMatchPopUp();
+            }
+
+            for (int i = 0; i < matchArrayLength; i++) {
+                if (MatchName.getText().equals(matches[i].getMatchName())) {
+                    matches[i].acceptPlayer(accountLoggedIn);
+                }
+            }
             hidePopUp();
         });
     }
